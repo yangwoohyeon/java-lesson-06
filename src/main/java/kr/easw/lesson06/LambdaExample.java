@@ -12,6 +12,7 @@ import java.util.function.Supplier;
  * 미리 선언된 람다 표현식을 사용하여, 예제로 주어진 메서드와 동일한 기능을 수행하는 코드를 작성해보세요.
  */
 public class LambdaExample {
+
     // 이 변수는 상수이기에 대문자로 선언합니다.
     private static final Random RANDOM = new Random();
 
@@ -23,7 +24,8 @@ public class LambdaExample {
     // public int supplyNumber() {
     //    return numbers[RANDOM.nextInt(numbers.length)];
     // }
-    private static final Supplier<Integer> numberSupplier = () -> numbers[RANDOM.nextInt(numbers.length)];
+    private static final Supplier<Integer> numberSupplier = () -> numbers[RANDOM.nextInt(
+            numbers.length)];
 
     // Function은 제너릭스에 포함된 타입을 받아 제너릭스에 포함된 타입을 반환하는 함수형 인터페이스입니다.
     // 이 람다 제너릭스는 <Integer, Integer>이기에 Integer를 받아 Integer를 반환합니다.
@@ -51,7 +53,8 @@ public class LambdaExample {
     //    return number + adjustment;
     // }
     @SuppressWarnings({"Convert2MethodRef", "RedundantSuppression"})
-    private static final BiFunction<Integer, Integer, Integer> adjuster = (number, adjustment) -> number + adjustment;
+    private static final BiFunction<Integer, Integer, Integer> adjuster = (number, adjustment) ->
+            number + adjustment;
 
 
     public static void main(String[] args) {
@@ -78,8 +81,10 @@ public class LambdaExample {
     // 각 람다는 서로 다른 이름으로 값을 수용한다는것을 잊지 마세요.
     // Function / BiFunction은 apply를, Consumer는 accept를 사용합니다.
     private static int lambdaResult(int base, int delta) {
+        int negativeValue = negativeConverter.apply(delta);
+        printer.accept(negativeValue);
 
-        throw new UnsupportedOperationException("이 코드를 지우고, 정답을 작성하세요.");
+        return adjuster.apply(base, delta);
     }
 
 }
